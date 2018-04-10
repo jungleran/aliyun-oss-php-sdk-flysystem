@@ -11,18 +11,27 @@ This is a Flysystem Adapter for the AliCloud OSS ~1.2.1
 composer require aliyuncs/aliyun-oss-flysystem
 ```
 
+## Environment variables (oss.env)
+Samples and unit tests depend on environment variables for OSS configuration.
+```
+cp oss.env-example oss.env
+vim oss.env
+
+# edit environment variables, e.g.:
+export OSS_ACCESS_KEY_ID=your id
+export OSS_ACCESS_KEY_SECRET=your secret
+export OSS_ENDPOINT=your endpoint
+export OSS_BUCKET=your bucket
+
+Write and save (:wq).
+```
+
 ## Running Sample
 
 ```
+source oss.env
+
 cd vendor/aliyun/aliyun-oss-flysystem/
-
-vim samples/Config.php
-
-modify the following config:
- const OSS_ACCESS_ID = '';
- const OSS_ACCESS_KEY = '';
- const OSS_ENDPOINT = '';
- const OSS_TEST_BUCKET = '';
 
 php samples/AliyunOssFlysystem.php
 ```
@@ -30,10 +39,7 @@ php samples/AliyunOssFlysystem.php
 ## Running Test
 
 ```bash
-export OSS_ACCESS_KEY_ID=your id
-export OSS_ACCESS_KEY_SECRET=your secret
-export OSS_ENDPOINT=your endpoint
-export OSS_BUCKET=your bucket
+source oss.env
 
 cd vendor/aliyun/aliyun-oss-flysystem/
 
