@@ -4,17 +4,29 @@ require_once __DIR__ . '/Common.php';
 use League\Flysystem\Filesystem;
 use Aliyun\Flysystem\AliyunOss\Plugins\PutFile;
 use Aliyun\Flysystem\AliyunOss\AliyunOssAdapter;
+use OSS\Core\OssException;
 
 $bucket = Common::getBucketName();
+
 $ossClient = Common::getOssClient();
-if (is_null($ossClient)) exit(1);
+
+if ($ossClient === NULL) {
+  exit(1);
+}
+
 //*******************************简单使用***************************************************************
 $adapter = new AliyunOssAdapter($ossClient, $bucket);
 $filesystem = new Filesystem($adapter);
 $filesystem->addPlugin(new PutFile());
 
 
-$adapter->deleteDir('aliyuncs-flysystem-samples');
+try {
+  $filesystem->deleteDir('aliyuncs-flysystem-samples');
+}
+catch (OssException $e) {
+  Common::println('delete dir failed:' . $e->getMessage());
+}
+
 $adapter->setPathPrefix('aliyuncs-flysystem-samples');
 
 // 写字符串到oss文件
