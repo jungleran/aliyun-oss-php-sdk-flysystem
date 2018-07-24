@@ -29,6 +29,9 @@ catch (OssException $e) {
 
 $adapter->setPathPrefix('aliyuncs-flysystem-samples');
 
+// Test PutFile plugin.
+$filesystem->putFile(basename(__FILE__), __FILE__);
+
 // 写字符串到oss文件
 $filesystem->write('1.txt', '123');
 
