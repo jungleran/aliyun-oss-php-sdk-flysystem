@@ -1,5 +1,5 @@
 {
-  "name": "aliyuncs/aliyun-oss-flysystem",
+  "name": "jungleran/aliyun-oss-php-sdk-flysystem",
   "description": "This is a Flysystem adapter for the Aliyun OSS ^2.2.1",
   "license": "MIT",
   "authors": [
